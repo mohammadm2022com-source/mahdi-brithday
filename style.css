@@ -1,0 +1,100 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#060d1a;font-family:Tahoma,sans-serif;overflow:hidden;height:100vh}
+
+/* بوم ستاره */
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+#scene{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;height:100vh}
+
+/* ===== پاکت ===== */
+#envelope-wrap{perspective:800px}
+#envelope{
+  width:min(320px,80vw);height:min(220px,55vw);
+  position:relative;cursor:pointer;
+  transform-style:preserve-3d;
+  transition:transform .8s cubic-bezier(.4,0,.2,1),box-shadow .4s;
+  filter:drop-shadow(0 8px 24px #0008);
+}
+#envelope:hover{transform:rotateY(8deg) rotateX(-4deg) scale(1.04)}
+
+#env-back,#env-front,#env-flap{position:absolute;width:100%;border-radius:4px}
+#env-back{
+  height:100%;
+  background:linear-gradient(160deg,#c8a96e,#a07840);
+  box-shadow:inset 0 0 30px #0003;
+}
+#env-flap{
+  top:0;left:0;height:55%;
+  background:linear-gradient(170deg,#d4b87a,#b08848);
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top center;
+  transition:transform .7s ease;
+  z-index:3;
+}
+#env-front{
+  bottom:0;height:60%;
+  background:linear-gradient(180deg,#c8a96e,#9a7235);
+  z-index:4;display:flex;align-items:center;justify-content:center;
+}
+#env-label{text-align:center;color:#fff8e8;font-size:clamp(13px,3vw,17px);line-height:1.7;text-shadow:0 1px 4px #0006}
+#env-label small{font-size:.75em;opacity:.8}
+
+/* باز شدن فلپ */
+#envelope.open #env-flap{transform:rotateX(-160deg)}
+
+/* ===== کاغذ نامه ===== */
+#letter-wrap{display:none;position:absolute;inset:0;align-items:center;justify-content:center;z-index:10}
+#letter-wrap.show{display:flex}
+#paper{
+  width:min(680px,92vw);max-height:85vh;overflow-y:auto;
+  background:repeating-linear-gradient(#fff9ee,#fff9ee 28px,#e8d8b0 29px);
+  border-radius:8px;padding:28px 32px 24px;
+  box-shadow:0 0 0 2px #c8a060,0 12px 48px #0009,inset 0 0 60px #f5e8c820;
+  position:relative;animation:unfold .6s ease;
+}
+@keyframes unfold{from{transform:scaleY(.05);opacity:0}to{transform:scaleY(1);opacity:1}}
+#paper-lines{position:absolute;inset:0;pointer-events:none;border-radius:8px;
+  background:repeating-linear-gradient(transparent,transparent 28px,#d4b87a44 29px)}
+#paper h2{color:#7a3a10;margin-bottom:16px;font-size:clamp(16px,4vw,22px)}
+#typed-text p{color:#3a2010;line-height:2;font-size:clamp(14px,3.5vw,17px);margin-bottom:8px;opacity:0;animation:fadein .5s forwards}
+@keyframes fadein{to{opacity:1}}
+.sig{color:#7a3a10;text-align:left;margin-top:20px;font-style:italic}
+#close-btn{
+  display:block;margin:20px auto 0;padding:10px 24px;
+  background:linear-gradient(135deg,#c8a060,#8a5a20);
+  color:#fff;border:none;border-radius:20px;cursor:pointer;font-size:15px;
+  transition:transform .2s,box-shadow .2s;
+}
+#close-btn:hover{transform:scale(1.06);box-shadow:0 4px 16px #0006}
+
+/* ===== گلبرگ ===== */
+.petal{position:fixed;top:-30px;font-size:clamp(18px,4vw,26px);pointer-events:none;z-index:5;
+  animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+
+/* ===== شمع ===== */
+.candle{position:fixed;z-index:3;display:flex;flex-direction:column;align-items:center}
+.wax{width:18px;height:60px;background:linear-gradient(#f5e8c8,#e0c898);border-radius:3px;
+  box-shadow:0 0 8px #f5e8c840}
+.flame{width:12px;height:22px;background:radial-gradient(ellipse at 50% 80%,#fff 10%,#ffd040 40%,#ff8000 70%,transparent 100%);
+  border-radius:50% 50% 30% 30%;animation:flicker 1.2s ease-in-out infinite alternate;
+  filter:blur(.5px);margin-bottom:-2px}
+@keyframes flicker{
+  0%{transform:scaleX(1) scaleY(1) rotate(-2deg);opacity:1}
+  50%{transform:scaleX(.85) scaleY(1.1) rotate(2deg);opacity:.9}
+  100%{transform:scaleX(1.1) scaleY(.95) rotate(-1deg);opacity:1}
+}
+
+/* ===== دکمه موسیقی ===== */
+#music-btn{
+  position:fixed;top:16px;left:16px;z-index:20;
+  background:#ffffff18;border:1px solid #ffffff30;
+  color:#fff;font-size:20px;border-radius:50%;
+  width:42px;height:42px;cursor:pointer;backdrop-filter:blur(4px);
+  transition:background .2s;
+}
+#music-btn:hover{background:#ffffff30}
+
+/* اسکرول‌بار */
+#paper::-webkit-scrollbar{width:6px}
+#paper::-webkit-scrollbar-thumb{background:#c8a060;border-radius:3px}
