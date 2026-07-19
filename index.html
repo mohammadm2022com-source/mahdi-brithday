@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>نامه مهدی</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bg"></canvas>
+
+<div id="scene">
+  <!-- پاکت سه‌بعدی -->
+  <div id="envelope-wrap">
+    <div id="envelope" onclick="openLetter()">
+      <div id="env-back"></div>
+      <div id="env-flap"></div>
+      <div id="env-front">
+        <div id="env-label">✉ برای مهدی<br><small>لمس کن</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- نامه -->
+  <div id="letter-wrap">
+    <div id="paper">
+      <div id="paper-lines"></div>
+      <h2>🌹 تولدت مبارک مهدی</h2>
+      <div id="typed-text"></div>
+      <p class="sig">— محمد مهدی</p>
+      <button id="close-btn" onclick="closeLetter()">🔄 بستن نامه</button>
+    </div>
+  </div>
+</div>
+
+<!-- شمع‌ها -->
+<div class="candle" style="left:6vw;bottom:60px"><div class="flame"></div><div class="wax"></div></div>
+<div class="candle" style="right:6vw;bottom:60px"><div class="flame"></div><div class="wax"></div></div>
+
+<!-- کنترل موسیقی -->
+<button id="music-btn" onclick="toggleMusic()">🔇</button>
+<audio id="bg-music" loop src="https://www.bensound.com/bensound-music/bensound-romantic.mp3"></audio>
+<audio id="open-sfx" src="https://www.soundjay.com/misc/sounds/paper-flip-01.mp3"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
